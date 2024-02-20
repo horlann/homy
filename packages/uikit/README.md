@@ -1,0 +1,13 @@
+<!--
+UI KIT FOR ADMIRALS CARDS PROJECTS
+UI KIT CONTAINS:
+1)APP THEME AND COLORS
+1)BUTTONS
+2)TEXT FIELDS
+3)DROPDOWNS
+4)ICONS AND THEIR DATA
+5)OTHER UI COMPONENTS
+-->
+Naming conventions:
+['App']['Pecularity']['Name in material design']
+example:AppPasswordButton

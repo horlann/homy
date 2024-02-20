@@ -1,0 +1,107 @@
+{
+  "auth": {
+    "getSmsCode": "Отримати SMS код",
+    "afterClickYouWillGetSms": "Після натискання Ви отримаєте SMS із кодом для підтвердження",
+    "doWeKnowYou": "Ми ще не знайомі з Вами?",
+    "selectYourCountryAndPhone": "Вкажіть вашу країну та номер телефону",
+    "phoneErrorMessage": "Не валідний номер телефону",
+    "codeFromSms": "Код із SMS",
+    "sendCodeAgain": "Відправити код повторно",
+    "continue": "Продовжити",
+    "smsCodeErrorMessage": "Невірний код із SMS",
+    "preSendSmsCodeMessage": "Ви можете відправити SMS ще раз\nчерез {sec} сек.",
+    "phoneNumber": "Номер телефону",
+    "name": "Ім'я",
+    "signUp": "Зареєструватися"
+  },
+  "work": {
+    "hold": "Зажати",
+    "stop": "Стоп",
+    "error": "Помилка",
+    "assignedDeliveries": "Призначені доставки",
+    "delivery": "Доставка",
+    "yourCurrentlyOffline": "Ви наразі офлайн",
+    "goToWork": "Починайте роботу"
+  },
+  "verification": {
+    "underVerification": "Перевірка",
+    "logOut": "Вийти",
+    "contactUs": "Зв'яжіться з нами"
+  },
+  "shared": {
+    "auth": "Авторизовані",
+    "nonAuth": "Не авторизовані"
+  },
+  "settings": {
+    "settings": "Налаштування"
+  },
+  "reviews": {
+    "reviews": "Відгуки"
+  },
+  "profile": {
+    "settings": "Налаштування",
+    "profile": "Профіль",
+    "history": "історія",
+    "reviewTips": "Відгуки і чайові",
+    "profileSettings": "Налаштування профіля",
+    "error": "Помилка",
+    "name": "Ім'я",
+    "phone": "Телефон",
+    "logOut": "Вийти"
+  },
+  "history": {
+    "historyCourier": "Історія кур'єра",
+    "user": "Користувач",
+    "noHistoryOrders": "Немає історії замовлень",
+    "error": "Помилка",
+    "ascending": "По висхідній",
+    "descending": "По спаданню",
+    "sortingByDate": "Сортування за датою",
+    "filters": "Фільтри",
+    "findBy": "Знайти за:",
+    "date": "Датою",
+    "productName": "Назвою продукту",
+    "recipient": "Одержувачем",
+    "phoneRecipient": "Телефоном одержувача",
+    "address": "Адресою"
+  },
+  "dashboard": {
+    "work": "Робота",
+    "profile": "Профіль"
+  },
+  "currentDelivery": {
+    "currentDelivery": "Поточна доставка",
+    "pickedUoAt": "Забрано о",
+    "orderId": "Номер замовлення",
+    "reciPient": "Одержувач",
+    "amount": "Кількість",
+    "deliveryTo": "Доставка до",
+    "products": "Товари",
+    "chat": "Чат",
+    "call": "Виклик",
+    "error": "Помилка",
+    "completeOrder": "Замовлення виконане",
+    "noCurrentDeliveries": "Поточних поставок немає",
+    "navigation": "До навігатора",
+    "positionUpdated": "Позицію оновлено",
+    "dataUpdated": "Дані оновлено",
+    "comment": "Коментар"
+  },
+  "assignedDeliveries": {
+    "assignedDeliveries": "Призначенні доставки",
+    "error": "Помилка",
+    "noAssignedOrders": "Немає призначених замовлень",
+    "delivery": "Доставка",
+    "pickUpDetails": "Деталі самовивозу",
+    "pickUpAt": "Самовивіз на",
+    "pickUpIn": "Забрати в",
+    "deliveryDetails": "Деталі доставки",
+    "deliveryTo": "Доставка до",
+    "items": "Елементи",
+    "accept": "Прийняти"
+  },
+  "appPermission": {
+    "turnOnAllPermissions": "Увімкніть усі дозволи",
+    "settings": "Налаштування"
+  }
+}
