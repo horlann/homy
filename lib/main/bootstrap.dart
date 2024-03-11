@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:homyyy/core/configs/environment_config.dart';
+import 'package:homyyy/firebase_options.dart';
 
 import 'di.dart';
 
@@ -21,9 +22,10 @@ Future<void> bootstrap(
     [DeviceOrientation.portraitUp],
   );
   //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await Firebase.initializeApp();
-  await EasyLocalization.ensureInitialized();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);  await EasyLocalization.ensureInitialized();
+  //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await ApplicationDependenciesResolver().resolve(
     environmentConfig: config,
   );

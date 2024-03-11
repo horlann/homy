@@ -24,7 +24,7 @@ class AuthCubit extends BaseCubit<AuthState> {
         if (event != null) {
           try {
             _couriersRepository
-                .listenCourierCourierById(event.uid)
+                .listenUserById(event.uid)
                 .listen((courier) async {
               emit(
                 AuthState.auth(

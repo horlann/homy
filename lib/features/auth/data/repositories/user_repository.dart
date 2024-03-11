@@ -23,12 +23,22 @@ abstract class UserAuthRepository {
     AuthCredential phoneAuthCredential,
     VoidCallback completion,
   );
-
+  Future<void> verifyEmailAndPassword(
+    String email,
+    String password,
+    VoidCallback completion,
+  );
+   Future<UserCredential?> createByEmailAndPassword(
+    String email,
+    String password,
+    VoidCallback completion,
+  );
   Future<User?> updatePhoneNumber(PhoneAuthCredential phoneAuthCredential);
 }
 
 class UserAuthRepositoryImpl implements UserAuthRepository {
-  UserAuthRepositoryImpl({required FirebaseAuthApi authApi}) : _authApi = authApi;
+  UserAuthRepositoryImpl({required FirebaseAuthApi authApi})
+      : _authApi = authApi;
 
   final FirebaseAuthApi _authApi;
 
@@ -37,10 +47,13 @@ class UserAuthRepositoryImpl implements UserAuthRepository {
     String phoneNumber,
     VoidCallback completion,
   ) async {
+    print('result $phoneNumber');
+
     String? result;
     await _authApi.verifyPhone(phoneNumber, completion, (String errorCode) {
       result = errorCode;
     });
+    print(result);
     if (result == 'invalid-phone-number') {
       throw const InvalidNumberException();
     } else if (result == 'phone-number-already-exists') {
@@ -70,6 +83,25 @@ class UserAuthRepositoryImpl implements UserAuthRepository {
   }
 
   @override
+  Future<void> verifyEmailAndPassword(
+    String email,
+    String password,
+    VoidCallback completion,
+  ) async {
+    try {
+      final credentials =
+          await _authApi.signInWithEmailpassword(email, password, completion);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-verification-code') {
+        throw const IncorrectOTPException();
+      } else if (e.code == 'too-many-requests') {
+        throw const TooManyRequestsException();
+      }
+      throw UnknownException(e.code);
+    }
+  }
+
+  @override
   Future<User?> signInByCredentials(
     AuthCredential phoneAuthCredential,
     VoidCallback completion,
@@ -84,6 +116,29 @@ class UserAuthRepositoryImpl implements UserAuthRepository {
       } else if (e.code == 'too-many-requests') {
         throw const TooManyRequestsException();
       }
+      throw UnknownException(e.code);
+    }
+  }
+
+  @override
+  Future<UserCredential?> createByEmailAndPassword(
+    String email,
+    String password,
+    VoidCallback completion,
+  ) async {
+    try {
+      final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-verification-code') {
+        throw const IncorrectOTPException();
+      } else if (e.code == 'too-many-requests') {
+        throw const TooManyRequestsException();
+      }
+      print(e.code);
       throw UnknownException(e.code);
     }
   }

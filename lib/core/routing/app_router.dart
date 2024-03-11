@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'app_router.gr.dart';
 
 //init route config
-@AutoRouterConfig(replaceInRouteName: 'Page,Route')
+@AutoRouterConfig(replaceInRouteName: '')
 class AppRouter extends $AppRouter {
   @override
   RouteType get defaultRouteType => const RouteType.material();
@@ -22,14 +22,26 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           page: AuthUpScreenWrapper.page,
           children: [
-            CustomRoute(page: PhoneInputScreenRoute.page, initial: true),
+                        CustomRoute(page: SignInByEmailRoute.page, initial: true),
+            CustomRoute(page: PhoneInputScreenRoute.page),
             CustomRoute(page: VerificationCodeScreenRoute.page),
           ],
         ),
         CustomRoute(
           page: SignUpScreenRoute.page,
         ),
-      //  CustomRoute(page: ChatScreenWrapperRoute.page),
+        CustomRoute(page: MainScreenRoute.page, children: [
+          CustomRoute(
+            page: HomeScreenRoute.page,
+            initial: true
+          ),
+          CustomRoute(
+            page: ChatScreenRoute.page,
+          ),
+          CustomRoute(
+            page: ProfileScreenRoute.page,
+          ),
+        ]),
       ],
     ),
   ];

@@ -7,52 +7,51 @@ import 'package:shared/enums/app_type.dart';
 import 'package:shared/logger/custom_log.dart';
 import 'package:shared/logger/logger_service.dart';
 
-part 'phone_input_cubit.freezed.dart';
-part 'phone_input_state.dart';
+part 'sign_in_email_cubit.freezed.dart';
+part 'sign_in_email_state.dart';
 
 const _phoneNumberLength = 9;
 
-class PhoneInputCubit extends BaseCubit<PhoneInputState> {
-  PhoneInputCubit(this._userRepository)
-      : super(const PhoneInputState.initial());
+class SignInEmailCubit extends BaseCubit<SignInEmailState> {
+  SignInEmailCubit(this._userRepository)
+      : super(const SignInEmailState.initial());
   final UserAuthRepository _userRepository;
 
   Future<void> onFieldUpdate(String input) async {
     emit(
-      PhoneInputState.idle(
-        numberValidated: input.length >= _phoneNumberLength,
+      SignInEmailState.idle(
+        validated: input.length >= _phoneNumberLength,
       ),
     );
   }
 
-  Future<void> onSubmit(String number, String countryCode) async {
-    emit(const PhoneInputState.loading());
+  Future<void> onSubmit(String email,String password) async {
+    emit(const SignInEmailState.loading());
     try {
-      await _userRepository.verifyPhone(number, () {
-        emit(const PhoneInputState.submit());
-      });
-       emit(const PhoneInputState.submit());
-        //await _userRepository.verifyEmailAndPassword('tortos121@gmail.com','12345678', () {
-      //  emit(const PhoneInputState.submit());
-     // });
+  
+        await _userRepository.verifyEmailAndPassword('tortos121@gmail.com','12345678', () {
+       emit(const SignInEmailState.submit());
+     });
+            emit(const SignInEmailState.submit());
+
     } on InvalidNumberException catch (_) {
       emit(
-        PhoneInputState.idle(
-          numberValidated: number.length >= _phoneNumberLength,
+        SignInEmailState.idle(
+          validated: true,
           errorText: 'Невірний формат вводу',
         ),
       );
     } on PhoneAlreadyExistsException catch (_) {
       emit(
-        PhoneInputState.idle(
-          numberValidated: number.length >= _phoneNumberLength,
+        SignInEmailState.idle(
+          validated: true,
           errorText: 'Телефон вже існує',
         ),
       );
     } on TooManyRequestsException catch (_) {
       emit(
-        PhoneInputState.idle(
-          numberValidated: number.length >= _phoneNumberLength,
+        SignInEmailState.idle(
+          validated: true,
           errorText: 'Забагато запитів.Спробуйте пізніше',
         ),
       );
@@ -65,8 +64,8 @@ class PhoneInputCubit extends BaseCubit<PhoneInputState> {
         logLevel: LogLevel.error,
       );
       emit(
-        PhoneInputState.idle(
-          numberValidated: number.length >= _phoneNumberLength,
+        SignInEmailState.idle(
+          validated: true,
           errorText: 'Помилка ${e.message}',
         ),
       );
@@ -79,8 +78,8 @@ class PhoneInputCubit extends BaseCubit<PhoneInputState> {
         logLevel: LogLevel.error,
       );
       emit(
-        PhoneInputState.idle(
-          numberValidated: number.length >= _phoneNumberLength,
+        SignInEmailState.idle(
+          validated: true,
           errorText: 'Error $e',
         ),
       );

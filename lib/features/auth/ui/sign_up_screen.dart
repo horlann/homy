@@ -21,13 +21,20 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  late final TextEditingController _controller;
+  late final TextEditingController _nameController;
+    late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
+
   String? photoPath;
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    _nameController = TextEditingController();
+        _emailController = TextEditingController();
+
+    _passwordController = TextEditingController();
+
   }
 
   @override
@@ -51,7 +58,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const Spacer(),
                   CustomInputField(
                     keyboardType: TextInputType.text,
-                    controller: _controller,
+                    controller: _nameController,
+                    labelText: LocaleKeys.auth_name.tr(),
+                    hint: LocaleKeys.auth_name.tr(),
+                    isActive: false,
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: (text) async {},
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                   CustomInputField(
+                    keyboardType: TextInputType.text,
+                    controller: _emailController,
+                    labelText: LocaleKeys.auth_name.tr(),
+                    hint: LocaleKeys.auth_name.tr(),
+                    isActive: false,
+                    textInputAction: TextInputAction.next,
+                    onEditingComplete: (text) async {},
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                   CustomInputField(
+                    keyboardType: TextInputType.text,
+                    controller: _passwordController,
                     labelText: LocaleKeys.auth_name.tr(),
                     hint: LocaleKeys.auth_name.tr(),
                     isActive: false,
@@ -69,11 +100,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           return auth.auth;
                         },
                       );
-                      if (user != null && _controller.value.text.isNotEmpty) {
+                      if (user != null && _emailController.value.text.isNotEmpty) {
                         context.read<SignUpCubit>().createAccount(
-                              user: user,
-                              name: _controller.value.text,
-                              photo: File(photoPath ?? ''),
+                                                        email: _emailController.text,
+
+                              password: _passwordController.text, name: _nameController.text,
                             );
                       }
                     },

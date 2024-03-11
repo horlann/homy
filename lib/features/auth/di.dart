@@ -3,8 +3,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:homyyy/features/auth/cubits/auth/auth_cubit.dart';
 import 'package:homyyy/features/auth/cubits/code_verification/code_verification_cubit.dart';
 import 'package:homyyy/features/auth/cubits/phone_input/phone_input_cubit.dart';
+import 'package:homyyy/features/auth/cubits/sign_in_by_email/sign_in_email_cubit.dart';
 import 'package:homyyy/features/auth/cubits/sign_up/sign_up_cubit.dart';
 import 'package:homyyy/features/auth/data/repositories/user_repository.dart';
+import 'package:homyyy/features/auth/ui/sign_in_by_email.dart';
 import 'package:homyyy/features/cdn/cdn_repository.dart';
 import 'package:homyyy/features/cdn/storage/firebase_storage.dart';
 import 'package:homyyy/features/user/user_repository.dart';
@@ -45,8 +47,14 @@ class AuthFeatureDependenciesResolver {
     );
     di.registerFactory<SignUpCubit>(
       () => SignUpCubit(
-        di.get<UserRepository>(),
-        di.get<CDNStorageRepository>(),
+        di.get<UserAuthRepository>(),
+                di.get<UserRepository>(),
+
+      ),
+    );
+    di.registerFactory<SignInEmailCubit>(
+      () => SignInEmailCubit(
+        di.get<UserAuthRepository>(),
       ),
     );
     di.registerFactory<AuthCubit>(

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "114938747461",
+    "project_id": "homy-236f2",
+    "storage_bucket": "homy-236f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:114938747461:android:251819f5f81ddafdeb212c",
+        "android_client_info": {
+          "package_name": "com.example.homyyy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX9zBYPm9mwFubNAFwR3ruYXZrekcSkfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

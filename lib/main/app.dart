@@ -38,7 +38,7 @@ class _HomyyyAppState extends State<HomyyyApp> {
       child: Builder(
         builder: (context) {
           return MaterialApp.router(
-            title: 'Flowerpot Courier',
+            title: 'Homyy',
             theme: ThemeData(useMaterial3: false),
             locale: context.deviceLocale,
             supportedLocales: context.supportedLocales,

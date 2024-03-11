@@ -72,7 +72,20 @@ class FirebaseAuthApi {
       rethrow;
     }
   }
-
+Future<UserCredential> signInWithEmailpassword(
+    String email,
+        String password,
+    VoidCallback completion,
+  ) async {
+    try {
+      final credential =_firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      return credential;
+    } on FirebaseAuthException catch (_) {
+      rethrow;
+    } catch (e) {
+      rethrow;
+    }
+  }
   Future<User?> signInWithCredential(
     AuthCredential credential,
     VoidCallback completion,

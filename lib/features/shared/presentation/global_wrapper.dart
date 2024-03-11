@@ -54,9 +54,9 @@ class _GlobalWrapperState extends State<GlobalWrapper> {
             state.mapOrNull(
               auth: (auth) {
                 if (auth.courier != null) {
-                 // context.router.replaceAll([const DashboardScreenRoute()]);
+                  context.router.replaceAll([const MainScreenRoute()]);
                 } else {
-                  context.pushRoute(const SignUpScreenRoute());
+                  context.pushRoute(const SignInByEmailRoute());
                 }
                 isNavigated = true;
               },
@@ -64,7 +64,7 @@ class _GlobalWrapperState extends State<GlobalWrapper> {
                 Future.delayed(const Duration(seconds: 1)).then((value) {
                   isNavigated = false;
                   context.pushRoute(
-                    PhoneInputScreenRoute(),
+                    SignInByEmailRoute(),
                   );
                 });
               },

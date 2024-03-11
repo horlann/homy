@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:homyyy/features/user/models/active_image_link.dart';
 import 'package:homyyy/features/user/models/user.dart';
 import 'package:shared/api/firebase_auth_api.dart';
 
@@ -7,17 +6,13 @@ import 'exceptions/courier_exceptions.dart';
 
 
 abstract class UserRepository  {
-  Future<UserEntity> getCourierById(String courierId);
+  Future<UserEntity> getUserById(String userId);
 
-  Future<void> insertCourier(UserEntity courier);
+  Future<void> insertUser(UserEntity user);
 
-  Stream<UserEntity> listenCourierCourierById(String courierId);
-
-  Future<void> updateCourierWorkStatus(bool status);
+  Stream<UserEntity> listenUserById(String userId);
 
   Future<void> updatePhoneNumber(String phone);
-
-  Future<void> updatePhoto(String photoLink);
 
   Future<void> updateFcmToken(String fcmToken);
 
@@ -27,7 +22,7 @@ abstract class UserRepository  {
 class UserRepositoryImpl extends UserRepository {
   UserRepositoryImpl(this._firestore, this._authApi);
 
-  static const _path = 'couriers';
+  static const _path = 'users';
   final FirebaseFirestore _firestore;
   final FirebaseAuthApi? _authApi;
 
@@ -39,19 +34,19 @@ class UserRepositoryImpl extends UserRepository {
 
   @pragma('For test purposes')
   @override
-  Future<void> insertCourier(UserEntity courier) async {
+  Future<void> insertUser(UserEntity user) async {
     try {
-      await _collection.doc(courier.id).set(courier.toJson());
+      await _collection.doc(user.id).set(user.toJson());
     } catch (e) {
       //
     }
   }
 
   @override
-  Future<UserEntity> getCourierById(String courierId) async {
+  Future<UserEntity> getUserById(String userId) async {
     try {
       return _collection
-          .where('id', isEqualTo: courierId)
+          .where('id', isEqualTo: userId)
           .get()
           .then((snapshot) {
         if (snapshot.docs.isNotEmpty) {
@@ -60,7 +55,7 @@ class UserRepositoryImpl extends UserRepository {
             return courier;
           } catch (e, s) {
             Error.throwWithStackTrace(
-              Exception('Courier serialization error'),
+              Exception('User serialization error'),
               s,
             );
           }
@@ -74,13 +69,13 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Stream<UserEntity> listenCourierCourierById(String courierId) {
-    return _collection.where('id', isEqualTo: courierId).snapshots().asyncMap(
+  Stream<UserEntity> listenUserById(String userId) {
+    return _collection.where('id', isEqualTo: userId).snapshots().asyncMap(
       (snapshot) async {
         if (snapshot.docs.isNotEmpty) {
           try {
-            final courier = UserEntity.fromJson(snapshot.docs.first.data());
-            return courier;
+            final user = UserEntity.fromJson(snapshot.docs.first.data());
+            return user;
           } catch (e) {
             rethrow;
           }
@@ -90,15 +85,6 @@ class UserRepositoryImpl extends UserRepository {
     );
   }
 
-  @override
-  Future<void> updateCourierWorkStatus(bool status) async {
-    if (id == null) {
-      throw NoCourierException();
-    }
-    return _collection.doc(id).update({
-      'is_online': status,
-    });
-  }
 
   @override
   Future<void> updatePhoneNumber(String phone) async {
@@ -108,26 +94,13 @@ class UserRepositoryImpl extends UserRepository {
     return _collection.doc(id).update({'phone': phone});
   }
 
-  @override
-  Future<void> updatePhoto(String photoLink) async {
-    if (id == null) {
-      throw NoCourierException();
-    }
-    final courier = await getCourierById(id ?? '');
-    final list = [];
-    list.addAll(courier.imageLinks);
-    list.add(ActiveImageLink(imageLink: photoLink, selected: false));
-    await _collection
-        .doc(id)
-        .update({'image_links': list.map((e) => e.toJson()).toList()});
-  }
 
   @override
   Future<void> updateFcmToken(String fcmToken) async {
     if (id == null) {
       throw NoCourierException();
     }
-    final courier = await getCourierById(id ?? '');
+    final courier = await getUserById(id ?? '');
     if (courier.fcmToken != fcmToken) {
       await _collection.doc(id).update({'fcm_token': fcmToken});
     }
