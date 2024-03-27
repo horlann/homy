@@ -9,9 +9,9 @@ import 'package:shared/api/firebase_auth_api.dart';
 import 'package:uikit/uikit.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key, required this.deliveryId});
+  const ChatScreen({super.key, required this.chatId});
 
-  final String deliveryId;
+  final String chatId;
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -31,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
           create: (context) => ChatCubit(
               authApi: FirebaseAuthApi(),
               chatRepository: GetIt.instance.get<ChatRepository>())
-            ..initialize(widget.deliveryId),
+            ..initialize(widget.chatId),
           child: Builder(builder: (context) {
             return BlocBuilder<ChatCubit, PersonalChatState>(
                 builder: (context, state) {

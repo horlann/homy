@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:homyyy/core/cache/shared_preferences/shared_preferences.dart';
 import 'package:homyyy/core/cache/shared_preferences/shared_preferences_impl.dart';
 import 'package:homyyy/core/configs/environment_config.dart';
+import 'package:homyyy/features/chat/di.dart';
+import 'package:homyyy/features/osbb/di.dart';
 import 'package:shared/logger/i_logger_service.dart';
 import 'package:shared/logger/logger_service.dart';
 import 'package:shared/services/notifications/di.dart';
@@ -60,5 +62,7 @@ class ApplicationDependenciesResolver {
   }) {
     SplashFeatureDependenciesResolver.resolve();
     AuthFeatureDependenciesResolver.resolve();
+    OsbbFeatureDependenciesResolver.resolve();
+    ChatsFeatureDependenciesResolver.resolve();
   }
 }

@@ -53,7 +53,7 @@ class _GlobalWrapperState extends State<GlobalWrapper> {
           listener: (context, state) {
             state.mapOrNull(
               auth: (auth) {
-                if (auth.courier != null) {
+                if (auth.user != null) {
                   context.router.replaceAll([const MainScreenRoute()]);
                 } else {
                   context.pushRoute(const SignInByEmailRoute());

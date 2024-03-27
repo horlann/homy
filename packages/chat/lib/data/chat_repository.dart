@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared/exceptions/exceptions.dart';
 import 'package:shared/logger/custom_log.dart';
 import 'package:shared/logger/logger_service.dart';
+import 'package:uuid/uuid.dart';
 
 abstract class ChatRepository {
   Stream<List<ChatMessage>> chatStream(String id);
@@ -11,12 +12,15 @@ abstract class ChatRepository {
   Future<void> pushMessage(String id, ChatMessage message);
 
   Future<void> seeMessage(String messageId, String id);
+    Future<String> createChat( String id,String id2);
+    
+
 }
 
 class ChatRepositoryImpl extends ChatRepository {
   final FirebaseFirestore _firestore;
 
-  static const _sessionCollection = 'deliveries';
+  static const _sessionCollection = 'chats';
 
   ChatRepositoryImpl({required FirebaseFirestore firestore})
       : _firestore = firestore;
@@ -75,6 +79,19 @@ class ChatRepositoryImpl extends ChatRepository {
         .collection('messages')
         .doc(message.id)
         .set(message.toDTO().toJson());
+  }
+   @override
+  Future<String> createChat(String id,String id2) async {
+    final uid=Uuid().v4();
+    await _firestore
+        .collection(_sessionCollection)
+        .doc(uid)
+        .set({
+          'id':uid,
+          'users':[id,id2],
+          'created_at':DateTime.now()
+        });
+        return uid;
   }
 
   @override

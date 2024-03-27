@@ -12,10 +12,10 @@ part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends BaseCubit<AuthState> {
-  AuthCubit(this._userRepository, this._couriersRepository)
+  AuthCubit(this._userRepository, this._userDataRepository)
       : super(const AuthState.initial());
   final UserAuthRepository _userRepository;
-  final UserRepository _couriersRepository;
+  final UserRepository _userDataRepository;
 
   Future<void> initialize() async {
     emit(const AuthState.loading());
@@ -23,12 +23,12 @@ class AuthCubit extends BaseCubit<AuthState> {
       _userRepository.authStateChanges().listen((event) async {
         if (event != null) {
           try {
-            _couriersRepository
+            _userDataRepository
                 .listenUserById(event.uid)
                 .listen((courier) async {
               emit(
                 AuthState.auth(
-                  courier: courier,
+                  user: courier,
                   auth: event,
                 ),
               );

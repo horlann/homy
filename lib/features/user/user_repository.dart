@@ -15,7 +15,7 @@ abstract class UserRepository  {
   Future<void> updatePhoneNumber(String phone);
 
   Future<void> updateFcmToken(String fcmToken);
-
+ Future<List<UserEntity>> getUsersByOsbb(String osbbId);
   String? get id;
 }
 
@@ -67,6 +67,32 @@ class UserRepositoryImpl extends UserRepository {
       rethrow;
     }
   }
+  
+   @override
+  Future<List<UserEntity>> getUsersByOsbb(String osbbId) async {
+    try {
+      return _collection
+          .where('osbb_id', isEqualTo: osbbId)
+          .get()
+          .then((snapshot) {
+        if (snapshot.docs.isNotEmpty) {
+          try {
+         return   snapshot.docs.map((e) => UserEntity.fromJson(e.data())).toList();
+          } catch (e, s) {
+            Error.throwWithStackTrace(
+              Exception('User serialization error'),
+              s,
+            );
+          }
+        } else {
+          throw Exception();
+        }
+      });
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 
   @override
   Stream<UserEntity> listenUserById(String userId) {

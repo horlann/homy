@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:homyyy/features/chat/chats_wrapper.dart';
 
 import 'app_router.gr.dart';
 
@@ -35,12 +36,23 @@ class AppRouter extends $AppRouter {
             page: HomeScreenRoute.page,
             initial: true
           ),
-          CustomRoute(
-            page: ChatScreenRoute.page,
+         
+           CustomRoute(
+            page: ChatsWrapperRoute.page,
+            children: [
+               CustomRoute(
+            page: ChatsScreenRoute.page,
+            initial: true
+          ),
+ CustomRoute(
+            page: SimpleChatScreenRoute.page,
+          ),
+            ]
           ),
           CustomRoute(
             page: ProfileScreenRoute.page,
           ),
+          
         ]),
       ],
     ),

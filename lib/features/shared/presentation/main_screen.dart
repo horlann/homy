@@ -12,7 +12,7 @@ class MainScreen extends StatelessWidget {
     return AutoTabsScaffold(
       routes: [
         HomeScreenRoute(),
-        ChatScreenRoute(),
+        ChatsWrapperRoute(),
         ProfileScreenRoute(),
       ],
       bottomNavigationBuilder: (context, tabsRouter) => _CustomBottomNavBar(
@@ -44,7 +44,7 @@ class _CustomBottomNavBarState extends State<_CustomBottomNavBar> {
   Widget build(BuildContext context) {
     final tabsRouter = AutoTabsRouter.of(context);
     return Container(
-      height: 56 + MediaQuery.of(context).viewPadding.bottom / 2,
+      height: 64 + MediaQuery.of(context).viewPadding.bottom / 2,
       color: Colors.white,
       child: Padding(
         padding: EdgeInsets.only(
@@ -61,7 +61,7 @@ class _CustomBottomNavBarState extends State<_CustomBottomNavBar> {
                     });
                   },
                 text: 'Домашня',
-                  iconPath: '',
+                iconPath: Icons.home,
                   isSelected: tabsRouter.activeIndex == 0,
                 )),
             Expanded(
@@ -73,7 +73,7 @@ class _CustomBottomNavBarState extends State<_CustomBottomNavBar> {
                   });
                 },
                 text: 'Чати',
-                iconPath: '',
+                iconPath: Icons.message,
                 isSelected: tabsRouter.activeIndex == 1,
               ),
             ),
@@ -86,8 +86,8 @@ class _CustomBottomNavBarState extends State<_CustomBottomNavBar> {
                   });
                 },
                 text: 'Профіль',
-                iconPath: '',
-                isSelected: tabsRouter.activeIndex == 1,
+                iconPath: Icons.verified_user,
+                isSelected: tabsRouter.activeIndex == 2,
               ),
             ),
           ],
@@ -106,7 +106,7 @@ class _NavBarItem extends StatelessWidget {
   });
 
   final VoidCallback callback;
-  final String iconPath;
+  final IconData iconPath;
   final bool isSelected;
   final String text;
 
@@ -119,22 +119,17 @@ class _NavBarItem extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              // SizedBox.expand(
-              //   child: Center(
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(top: 2.0),
-              //       child: SvgPicture.asset(
-              //         iconPath,
-              //         colorFilter: isSelected
-              //             ? ColorFilter.mode(
-              //                 Theme.of(context).colorScheme.tertiaryContainer,
-              //                 BlendMode.srcIn,
-              //               )
-              //             : null,
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              SizedBox(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Icon(
+                      iconPath,
+                      color: isSelected?Colors.green:Colors.black,
+                    ),
+                  ),
+                ),
+              ),
               Text(text)
             ],
           ),

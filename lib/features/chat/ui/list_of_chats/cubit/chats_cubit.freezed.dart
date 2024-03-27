@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth_cubit.dart';
+part of 'chats_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,69 +15,70 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$ChatsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User auth, UserEntity? user) auth,
+    required TResult Function(List<UserChatInfo> chats) idle,
     required TResult Function() loading,
-    required TResult Function() nonAuth,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User auth, UserEntity? user)? auth,
+    TResult? Function(List<UserChatInfo> chats)? idle,
     TResult? Function()? loading,
-    TResult? Function()? nonAuth,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User auth, UserEntity? user)? auth,
+    TResult Function(List<UserChatInfo> chats)? idle,
     TResult Function()? loading,
-    TResult Function()? nonAuth,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Auth value) auth,
+    required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NonAuth value) nonAuth,
+    required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Auth value)? auth,
+    TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_NonAuth value)? nonAuth,
+    TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Auth value)? auth,
+    TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
-    TResult Function(_NonAuth value)? nonAuth,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+abstract class $ChatsStateCopyWith<$Res> {
+  factory $ChatsStateCopyWith(
+          ChatsState value, $Res Function(ChatsState) then) =
+      _$ChatsStateCopyWithImpl<$Res, ChatsState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$ChatsStateCopyWithImpl<$Res, $Val extends ChatsState>
+    implements $ChatsStateCopyWith<$Res> {
+  _$ChatsStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -94,7 +95,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ChatsStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -108,7 +109,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'ChatsState.initial()';
   }
 
   @override
@@ -124,9 +125,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User auth, UserEntity? user) auth,
+    required TResult Function(List<UserChatInfo> chats) idle,
     required TResult Function() loading,
-    required TResult Function() nonAuth,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -135,9 +136,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User auth, UserEntity? user)? auth,
+    TResult? Function(List<UserChatInfo> chats)? idle,
     TResult? Function()? loading,
-    TResult? Function()? nonAuth,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -146,9 +147,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User auth, UserEntity? user)? auth,
+    TResult Function(List<UserChatInfo> chats)? idle,
     TResult Function()? loading,
-    TResult Function()? nonAuth,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -161,9 +162,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Auth value) auth,
+    required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NonAuth value) nonAuth,
+    required TResult Function(_Error value) error,
   }) {
     return initial(this);
   }
@@ -172,9 +173,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Auth value)? auth,
+    TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_NonAuth value)? nonAuth,
+    TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -183,9 +184,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Auth value)? auth,
+    TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
-    TResult Function(_NonAuth value)? nonAuth,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -195,111 +196,109 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements AuthState {
+abstract class _Initial implements ChatsState {
   const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthImplCopyWith<$Res> {
-  factory _$$AuthImplCopyWith(
-          _$AuthImpl value, $Res Function(_$AuthImpl) then) =
-      __$$AuthImplCopyWithImpl<$Res>;
+abstract class _$$IdleImplCopyWith<$Res> {
+  factory _$$IdleImplCopyWith(
+          _$IdleImpl value, $Res Function(_$IdleImpl) then) =
+      __$$IdleImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({User auth, UserEntity? user});
+  $Res call({List<UserChatInfo> chats});
 }
 
 /// @nodoc
-class __$$AuthImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthImpl>
-    implements _$$AuthImplCopyWith<$Res> {
-  __$$AuthImplCopyWithImpl(_$AuthImpl _value, $Res Function(_$AuthImpl) _then)
+class __$$IdleImplCopyWithImpl<$Res>
+    extends _$ChatsStateCopyWithImpl<$Res, _$IdleImpl>
+    implements _$$IdleImplCopyWith<$Res> {
+  __$$IdleImplCopyWithImpl(_$IdleImpl _value, $Res Function(_$IdleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? auth = null,
-    Object? user = freezed,
+    Object? chats = null,
   }) {
-    return _then(_$AuthImpl(
-      auth: null == auth
-          ? _value.auth
-          : auth // ignore: cast_nullable_to_non_nullable
-              as User,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity?,
+    return _then(_$IdleImpl(
+      chats: null == chats
+          ? _value._chats
+          : chats // ignore: cast_nullable_to_non_nullable
+              as List<UserChatInfo>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$AuthImpl implements _Auth {
-  const _$AuthImpl({required this.auth, this.user});
+class _$IdleImpl implements _Idle {
+  const _$IdleImpl({required final List<UserChatInfo> chats}) : _chats = chats;
 
+  final List<UserChatInfo> _chats;
   @override
-  final User auth;
-  @override
-  final UserEntity? user;
+  List<UserChatInfo> get chats {
+    if (_chats is EqualUnmodifiableListView) return _chats;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_chats);
+  }
 
   @override
   String toString() {
-    return 'AuthState.auth(auth: $auth, user: $user)';
+    return 'ChatsState.idle(chats: $chats)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthImpl &&
-            (identical(other.auth, auth) || other.auth == auth) &&
-            (identical(other.user, user) || other.user == user));
+            other is _$IdleImpl &&
+            const DeepCollectionEquality().equals(other._chats, _chats));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, auth, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_chats));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthImplCopyWith<_$AuthImpl> get copyWith =>
-      __$$AuthImplCopyWithImpl<_$AuthImpl>(this, _$identity);
+  _$$IdleImplCopyWith<_$IdleImpl> get copyWith =>
+      __$$IdleImplCopyWithImpl<_$IdleImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User auth, UserEntity? user) auth,
+    required TResult Function(List<UserChatInfo> chats) idle,
     required TResult Function() loading,
-    required TResult Function() nonAuth,
+    required TResult Function(String error) error,
   }) {
-    return auth(this.auth, user);
+    return idle(chats);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User auth, UserEntity? user)? auth,
+    TResult? Function(List<UserChatInfo> chats)? idle,
     TResult? Function()? loading,
-    TResult? Function()? nonAuth,
+    TResult? Function(String error)? error,
   }) {
-    return auth?.call(this.auth, user);
+    return idle?.call(chats);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User auth, UserEntity? user)? auth,
+    TResult Function(List<UserChatInfo> chats)? idle,
     TResult Function()? loading,
-    TResult Function()? nonAuth,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (auth != null) {
-      return auth(this.auth, user);
+    if (idle != null) {
+      return idle(chats);
     }
     return orElse();
   }
@@ -308,48 +307,46 @@ class _$AuthImpl implements _Auth {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Auth value) auth,
+    required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NonAuth value) nonAuth,
+    required TResult Function(_Error value) error,
   }) {
-    return auth(this);
+    return idle(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Auth value)? auth,
+    TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_NonAuth value)? nonAuth,
+    TResult? Function(_Error value)? error,
   }) {
-    return auth?.call(this);
+    return idle?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Auth value)? auth,
+    TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
-    TResult Function(_NonAuth value)? nonAuth,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (auth != null) {
-      return auth(this);
+    if (idle != null) {
+      return idle(this);
     }
     return orElse();
   }
 }
 
-abstract class _Auth implements AuthState {
-  const factory _Auth({required final User auth, final UserEntity? user}) =
-      _$AuthImpl;
+abstract class _Idle implements ChatsState {
+  const factory _Idle({required final List<UserChatInfo> chats}) = _$IdleImpl;
 
-  User get auth;
-  UserEntity? get user;
+  List<UserChatInfo> get chats;
   @JsonKey(ignore: true)
-  _$$AuthImplCopyWith<_$AuthImpl> get copyWith =>
+  _$$IdleImplCopyWith<_$IdleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -362,7 +359,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$ChatsStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -376,7 +373,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'AuthState.loading()';
+    return 'ChatsState.loading()';
   }
 
   @override
@@ -392,9 +389,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User auth, UserEntity? user) auth,
+    required TResult Function(List<UserChatInfo> chats) idle,
     required TResult Function() loading,
-    required TResult Function() nonAuth,
+    required TResult Function(String error) error,
   }) {
     return loading();
   }
@@ -403,9 +400,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User auth, UserEntity? user)? auth,
+    TResult? Function(List<UserChatInfo> chats)? idle,
     TResult? Function()? loading,
-    TResult? Function()? nonAuth,
+    TResult? Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -414,9 +411,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User auth, UserEntity? user)? auth,
+    TResult Function(List<UserChatInfo> chats)? idle,
     TResult Function()? loading,
-    TResult Function()? nonAuth,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -429,9 +426,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Auth value) auth,
+    required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NonAuth value) nonAuth,
+    required TResult Function(_Error value) error,
   }) {
     return loading(this);
   }
@@ -440,9 +437,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Auth value)? auth,
+    TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_NonAuth value)? nonAuth,
+    TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -451,9 +448,9 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Auth value)? auth,
+    TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
-    TResult Function(_NonAuth value)? nonAuth,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -463,78 +460,104 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements AuthState {
+abstract class _Loading implements ChatsState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$NonAuthImplCopyWith<$Res> {
-  factory _$$NonAuthImplCopyWith(
-          _$NonAuthImpl value, $Res Function(_$NonAuthImpl) then) =
-      __$$NonAuthImplCopyWithImpl<$Res>;
+abstract class _$$ErrorImplCopyWith<$Res> {
+  factory _$$ErrorImplCopyWith(
+          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
+      __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
 }
 
 /// @nodoc
-class __$$NonAuthImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$NonAuthImpl>
-    implements _$$NonAuthImplCopyWith<$Res> {
-  __$$NonAuthImplCopyWithImpl(
-      _$NonAuthImpl _value, $Res Function(_$NonAuthImpl) _then)
+class __$$ErrorImplCopyWithImpl<$Res>
+    extends _$ChatsStateCopyWithImpl<$Res, _$ErrorImpl>
+    implements _$$ErrorImplCopyWith<$Res> {
+  __$$ErrorImplCopyWithImpl(
+      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$ErrorImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$NonAuthImpl implements _NonAuth {
-  const _$NonAuthImpl();
+class _$ErrorImpl implements _Error {
+  const _$ErrorImpl(this.error);
+
+  @override
+  final String error;
 
   @override
   String toString() {
-    return 'AuthState.nonAuth()';
+    return 'ChatsState.error(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NonAuthImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(User auth, UserEntity? user) auth,
+    required TResult Function(List<UserChatInfo> chats) idle,
     required TResult Function() loading,
-    required TResult Function() nonAuth,
+    required TResult Function(String error) error,
   }) {
-    return nonAuth();
+    return error(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(User auth, UserEntity? user)? auth,
+    TResult? Function(List<UserChatInfo> chats)? idle,
     TResult? Function()? loading,
-    TResult? Function()? nonAuth,
+    TResult? Function(String error)? error,
   }) {
-    return nonAuth?.call();
+    return error?.call(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(User auth, UserEntity? user)? auth,
+    TResult Function(List<UserChatInfo> chats)? idle,
     TResult Function()? loading,
-    TResult Function()? nonAuth,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (nonAuth != null) {
-      return nonAuth();
+    if (error != null) {
+      return error(this.error);
     }
     return orElse();
   }
@@ -543,40 +566,45 @@ class _$NonAuthImpl implements _NonAuth {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Auth value) auth,
+    required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_NonAuth value) nonAuth,
+    required TResult Function(_Error value) error,
   }) {
-    return nonAuth(this);
+    return error(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Auth value)? auth,
+    TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_NonAuth value)? nonAuth,
+    TResult? Function(_Error value)? error,
   }) {
-    return nonAuth?.call(this);
+    return error?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Auth value)? auth,
+    TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
-    TResult Function(_NonAuth value)? nonAuth,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (nonAuth != null) {
-      return nonAuth(this);
+    if (error != null) {
+      return error(this);
     }
     return orElse();
   }
 }
 
-abstract class _NonAuth implements AuthState {
-  const factory _NonAuth() = _$NonAuthImpl;
+abstract class _Error implements ChatsState {
+  const factory _Error(final String error) = _$ErrorImpl;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
