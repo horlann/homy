@@ -5,13 +5,36 @@ import 'package:homyyy/core/routing/app_router.gr.dart';
 import 'package:homyyy/features/chat/ui/list_of_chats/cubit/chats_cubit.dart';
 import 'package:homyyy/features/user/models/user.dart';
 import 'package:homyyy/features/user/user_repository.dart';
+import 'package:intl/intl.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../../../main/di.dart';
 
 @RoutePage()
-class ChatsScreen extends StatelessWidget {
+class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
 
+  @override
+  State<ChatsScreen> createState() => _ChatsScreenState();
+}
+RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+
+  void _onRefresh() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use refreshFailed()
+    _refreshController.refreshCompleted();
+  }
+
+  void _onLoading() async{
+    // monitor network fetch
+    await Future.delayed(Duration(milliseconds: 1000));
+    // if failed,use loadFailed(),if no data return,use LoadNodata()
+  
+    _refreshController.loadComplete();
+  }
+class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserChatsCubit>(
@@ -37,16 +60,27 @@ class ChatsScreen extends StatelessWidget {
                           ),
                       idle: (idleState) => Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  return _ChatCard(
-                                    info: idleState.chats[index],
-                                  );
-                                },
-                                separatorBuilder: (context, index) => SizedBox(
-                                      height: 16,
-                                    ),
-                                itemCount: idleState.chats.length),
+                            child: SmartRefresher(
+                              onRefresh: (){
+                                _onRefresh.call();
+                                context.read<UserChatsCubit>().init();
+                              },
+                              onLoading: _onLoading,
+                              enablePullDown: true,
+                              enablePullUp: true,
+                              controller: _refreshController,
+                              child: ListView.separated(
+                                  itemBuilder: (context, index) {
+                                    return _ChatCard(
+                                      info: idleState.chats[index],
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                  itemCount: idleState.chats.length),
+                            ),
                           ));
                 },
               );
@@ -57,7 +91,7 @@ class ChatsScreen extends StatelessWidget {
 }
 
 class _ChatCard extends StatelessWidget {
-  final UserChatInfo info;
+  final ChatEntity info;
   const _ChatCard({super.key, required this.info});
 
   @override
@@ -67,9 +101,41 @@ class _ChatCard extends StatelessWidget {
         context.pushRoute(SimpleChatScreenRoute(chatId: info.chatId));
       },
       child: SizedBox(
-          height: 56,
+          height: 70,
           width: double.infinity,
-          child: ColoredBox(color: Colors.red.withOpacity(0.5),child: Text(''),)),
+          child: ColoredBox(
+            color: Colors.red.withOpacity(0.5),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Stack(
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(info.recipient.name!.toString()),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(((info.messages.firstOrNull)?.text??"_____").toString()),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    child: Text(DateFormat('hh:mm').format(info.messages.first.createdAt)),
+                    bottom: 0,
+                    right: 0,
+                  )
+                ],
+              ),
+            ),
+          )),
     );
   }
 }
@@ -106,15 +172,15 @@ showUsersList(BuildContext rootContext) {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                               onTap: () {
-                                                                context.popRoute();
+                                context.popRoute();
 
                                 final cubit =
                                     rootContext.read<UserChatsCubit>();
-                                cubit.createChat((chat){
-                                   context.pushRoute(SimpleChatScreenRoute(chatId: chat));
-                
-                                },snapshot.data?[index].id??'');},
-                               
+                                cubit.createChat((chat) {
+                                  context.pushRoute(
+                                      SimpleChatScreenRoute(chatId: chat));
+                                }, snapshot.data?[index].id ?? '');
+                              },
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: Colors.amber.withOpacity(0.2),

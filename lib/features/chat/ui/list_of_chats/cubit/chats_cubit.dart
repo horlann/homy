@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:chat/cubit/models/chat_message.dart';
 import 'package:chat/data/chat_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:homyyy/features/chat/chats_repository.dart';
 import 'package:homyyy/features/osbb/data/models/osbb_model.dart';
 import 'package:homyyy/features/osbb/data/osbb_repository.dart';
+import 'package:homyyy/features/user/models/user.dart';
 import 'package:homyyy/main/di.dart';
 import 'package:shared/api/firebase_auth_api.dart';
 
@@ -43,6 +45,13 @@ class UserChatInfo {
    UserChatInfo({required this.recipient, required this.chatId});
 
    factory UserChatInfo.fromJson(Map<String,dynamic> json){
-    return UserChatInfo(chatId: json['id'],recipient:json['users'][0]);
+    return UserChatInfo(chatId: json['id'],recipient:json['users'][1]);
    }
+}
+class ChatEntity {
+  final UserEntity recipient;
+  final String chatId;
+  final List<ChatMessage> messages;
+
+   ChatEntity(this.messages, {required this.recipient, required this.chatId});
 }

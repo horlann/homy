@@ -1,14 +1,17 @@
 import 'dart:ui';
 
+import 'package:chat/data/chat_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:homyyy/features/auth/data/exceptions/auth_exceptions.dart';
 import 'package:homyyy/features/chat/ui/list_of_chats/cubit/chats_cubit.dart';
 import 'package:homyyy/features/osbb/data/models/osbb_model.dart';
+import 'package:homyyy/features/user/user_repository.dart';
+import 'package:homyyy/main/di.dart';
 import 'package:shared/api/firebase_auth_api.dart';
 
 abstract class ChatsRepository {
-  Future<List<UserChatInfo>> userChats(
+  Future<List<ChatEntity>> userChats(
     String id,
   );
 
@@ -22,17 +25,24 @@ class ChatsRepositoryImpl implements ChatsRepository {
       _firestore.collection('chats');
 
   @override
-  Future<List<UserChatInfo>> userChats(
+  Future<List<ChatEntity>> userChats(
     String id,
   ) async {
      try {
       return _collection
           .where('users',arrayContains: id)
           .get()
-          .then((snapshot) {
+          .then((snapshot) async {
         if (snapshot.docs.isNotEmpty) {
           try {
-          return  snapshot.docs.map((e) => UserChatInfo.fromJson(e.data())).toList();
+            final chats=<ChatEntity>[];
+            for(final doc in  snapshot.docs){
+               final chatInfo=UserChatInfo.fromJson(doc.data());
+            final user=await di.get<UserRepository>().getUserById(chatInfo.recipient);
+            final messages=await di.get<ChatRepository>().chatStream(chatInfo.chatId).first;
+            chats.add(ChatEntity(messages,chatId: chatInfo.chatId,recipient: user));
+            }
+         return chats;
           } catch (e, s) {
             Error.throwWithStackTrace(
               Exception('User chat info serialization error'),

@@ -6,7 +6,15 @@ import 'package:homyyy/features/home/ui/widgets/home_title_widget.dart';
 import 'package:homyyy/features/osbb/cubit/osbb_cubit.dart';
 import 'package:homyyy/main/di.dart';
 import 'package:shared/base_cubit/base_cubit.dart';
+@RoutePage()
+class HomeWrapper extends StatelessWidget {
+  const HomeWrapper({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return AutoRouter();
+  }
+}
 @RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

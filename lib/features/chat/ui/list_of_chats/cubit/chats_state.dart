@@ -5,7 +5,7 @@ class ChatsState with _$ChatsState {
   const factory ChatsState.initial() = _Initial;
 
   const factory ChatsState.idle({
-  required  List<UserChatInfo> chats,
+  required  List<ChatEntity> chats,
   }) = _Idle;
 
   const factory ChatsState.loading() = _Loading;

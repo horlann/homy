@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:homyyy/features/chat/chats_wrapper.dart';
+import 'package:homyyy/features/home/ui/home_screen.dart';
 
 import 'app_router.gr.dart';
 
@@ -23,7 +24,7 @@ class AppRouter extends $AppRouter {
         CustomRoute(
           page: AuthUpScreenWrapper.page,
           children: [
-                        CustomRoute(page: SignInByEmailRoute.page, initial: true),
+            CustomRoute(page: SignInByEmailRoute.page, initial: true),
             CustomRoute(page: PhoneInputScreenRoute.page),
             CustomRoute(page: VerificationCodeScreenRoute.page),
           ],
@@ -33,26 +34,23 @@ class AppRouter extends $AppRouter {
         ),
         CustomRoute(page: MainScreenRoute.page, children: [
           CustomRoute(
-            page: HomeScreenRoute.page,
-            initial: true
-          ),
-         
-           CustomRoute(
-            page: ChatsWrapperRoute.page,
-            children: [
-               CustomRoute(
-            page: ChatsScreenRoute.page,
-            initial: true
-          ),
- CustomRoute(
-            page: SimpleChatScreenRoute.page,
-          ),
-            ]
-          ),
+              page: HomeWrapperRoute.page,
+              children: [
+                CustomRoute(page: HomeScreenRoute.page, initial: true),
+                CustomRoute(page: NeighboursScreenRoute.page),
+                CustomRoute(page: OSBBInfoScreenRoute.page),
+                CustomRoute(page: AdminInfoScreenRoute.page)
+              ],
+              initial: true),
+          CustomRoute(page: ChatsWrapperRoute.page, children: [
+            CustomRoute(page: ChatsScreenRoute.page, initial: true),
+            CustomRoute(
+              page: SimpleChatScreenRoute.page,
+            ),
+          ]),
           CustomRoute(
             page: ProfileScreenRoute.page,
           ),
-          
         ]),
       ],
     ),

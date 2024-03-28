@@ -19,7 +19,7 @@ mixin _$ChatsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserChatInfo> chats) idle,
+    required TResult Function(List<ChatEntity> chats) idle,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) =>
@@ -27,7 +27,7 @@ mixin _$ChatsState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserChatInfo> chats)? idle,
+    TResult? Function(List<ChatEntity> chats)? idle,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) =>
@@ -35,7 +35,7 @@ mixin _$ChatsState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserChatInfo> chats)? idle,
+    TResult Function(List<ChatEntity> chats)? idle,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -125,7 +125,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserChatInfo> chats) idle,
+    required TResult Function(List<ChatEntity> chats) idle,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
@@ -136,7 +136,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserChatInfo> chats)? idle,
+    TResult? Function(List<ChatEntity> chats)? idle,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -147,7 +147,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserChatInfo> chats)? idle,
+    TResult Function(List<ChatEntity> chats)? idle,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -206,7 +206,7 @@ abstract class _$$IdleImplCopyWith<$Res> {
           _$IdleImpl value, $Res Function(_$IdleImpl) then) =
       __$$IdleImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<UserChatInfo> chats});
+  $Res call({List<ChatEntity> chats});
 }
 
 /// @nodoc
@@ -225,7 +225,7 @@ class __$$IdleImplCopyWithImpl<$Res>
       chats: null == chats
           ? _value._chats
           : chats // ignore: cast_nullable_to_non_nullable
-              as List<UserChatInfo>,
+              as List<ChatEntity>,
     ));
   }
 }
@@ -233,11 +233,11 @@ class __$$IdleImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$IdleImpl implements _Idle {
-  const _$IdleImpl({required final List<UserChatInfo> chats}) : _chats = chats;
+  const _$IdleImpl({required final List<ChatEntity> chats}) : _chats = chats;
 
-  final List<UserChatInfo> _chats;
+  final List<ChatEntity> _chats;
   @override
-  List<UserChatInfo> get chats {
+  List<ChatEntity> get chats {
     if (_chats is EqualUnmodifiableListView) return _chats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_chats);
@@ -270,7 +270,7 @@ class _$IdleImpl implements _Idle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserChatInfo> chats) idle,
+    required TResult Function(List<ChatEntity> chats) idle,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
@@ -281,7 +281,7 @@ class _$IdleImpl implements _Idle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserChatInfo> chats)? idle,
+    TResult? Function(List<ChatEntity> chats)? idle,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -292,7 +292,7 @@ class _$IdleImpl implements _Idle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserChatInfo> chats)? idle,
+    TResult Function(List<ChatEntity> chats)? idle,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -342,9 +342,9 @@ class _$IdleImpl implements _Idle {
 }
 
 abstract class _Idle implements ChatsState {
-  const factory _Idle({required final List<UserChatInfo> chats}) = _$IdleImpl;
+  const factory _Idle({required final List<ChatEntity> chats}) = _$IdleImpl;
 
-  List<UserChatInfo> get chats;
+  List<ChatEntity> get chats;
   @JsonKey(ignore: true)
   _$$IdleImplCopyWith<_$IdleImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -389,7 +389,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserChatInfo> chats) idle,
+    required TResult Function(List<ChatEntity> chats) idle,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
@@ -400,7 +400,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserChatInfo> chats)? idle,
+    TResult? Function(List<ChatEntity> chats)? idle,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -411,7 +411,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserChatInfo> chats)? idle,
+    TResult Function(List<ChatEntity> chats)? idle,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
@@ -529,7 +529,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserChatInfo> chats) idle,
+    required TResult Function(List<ChatEntity> chats) idle,
     required TResult Function() loading,
     required TResult Function(String error) error,
   }) {
@@ -540,7 +540,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserChatInfo> chats)? idle,
+    TResult? Function(List<ChatEntity> chats)? idle,
     TResult? Function()? loading,
     TResult? Function(String error)? error,
   }) {
@@ -551,7 +551,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserChatInfo> chats)? idle,
+    TResult Function(List<ChatEntity> chats)? idle,
     TResult Function()? loading,
     TResult Function(String error)? error,
     required TResult orElse(),
