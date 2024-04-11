@@ -7,9 +7,14 @@ import 'package:homyyy/features/osbb/data/models/osbb_model.dart';
 import 'package:shared/api/firebase_auth_api.dart';
 
 abstract class OSBBRepository {
+  ///Simply get one [OSBB] object
+  ///for more details take a look at the [OSBB] model
   Future<OSBBModel> getOSBB(
     String id,
   );
+
+  ///Subscribe  for  [OSBB] object
+  ///for more details take a look at the [OSBB] model
   Stream<OSBBModel> getOSBBStream(
     String id,
   );
@@ -17,19 +22,18 @@ abstract class OSBBRepository {
 
 class OSBBRepositoryImpl implements OSBBRepository {
   OSBBRepositoryImpl(this._firestore);
+
   final FirebaseFirestore _firestore;
- CollectionReference<Map<String, dynamic>> get _collection =>
+
+  CollectionReference<Map<String, dynamic>> get _collection =>
       _firestore.collection('osbb');
 
   @override
   Future<OSBBModel> getOSBB(
     String id,
   ) async {
- try {
-      return _collection
-          .where('id', isEqualTo: id)
-          .get()
-          .then((snapshot) {
+    try {
+      return _collection.where('id', isEqualTo: id).get().then((snapshot) {
         if (snapshot.docs.isNotEmpty) {
           try {
             final courier = OSBBModel.fromJson(snapshot.docs.first.data());
@@ -46,12 +50,13 @@ class OSBBRepositoryImpl implements OSBBRepository {
       });
     } catch (e) {
       rethrow;
-    }  }
+    }
+  }
 
   @override
   Stream<OSBBModel> getOSBBStream(
     String id,
-  )  {
+  ) {
     return _collection.where('id', isEqualTo: id).snapshots().asyncMap(
       (snapshot) async {
         if (snapshot.docs.isNotEmpty) {
@@ -65,4 +70,5 @@ class OSBBRepositoryImpl implements OSBBRepository {
         throw Exception();
       },
     );
-}}
+  }
+}

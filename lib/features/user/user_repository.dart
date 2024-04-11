@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:homyyy/features/user/models/user.dart';
 import 'package:shared/api/firebase_auth_api.dart';
 
-import 'exceptions/courier_exceptions.dart';
+import 'exceptions/user_exceptions.dart';
 
 
 abstract class UserRepository  {

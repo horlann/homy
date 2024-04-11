@@ -4,35 +4,54 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:homyyy/features/auth/data/exceptions/auth_exceptions.dart';
 import 'package:shared/api/firebase_auth_api.dart';
 
+///To verify user identity OAuth2 protocol
+///is used in [Homyyy] application
 abstract class UserAuthRepository {
+  ///Verify phone number
+  ///and send OTP code
+  ///to provided number
+  ///
   Future<void> verifyPhone(
     String phoneNumber,
     VoidCallback completion,
   );
 
+  ///Verify OTP code
   Future<PhoneAuthCredential> verifyCode(
     String phoneNumber,
     VoidCallback completion,
   );
 
+  ///Remove session token and log out
   Future<void> signOut();
 
+  ///Listen auth state updates
   Stream<User?> authStateChanges();
 
+  ///Sign in by provided credentials
+  ///can be differ
+  ///[Email+Password]
+  ///[Phone +OTP]
   Future<User?> signInByCredentials(
     AuthCredential phoneAuthCredential,
     VoidCallback completion,
   );
+
+  ///Verify email and password
   Future<void> verifyEmailAndPassword(
     String email,
     String password,
     VoidCallback completion,
   );
-   Future<UserCredential?> createByEmailAndPassword(
+
+  ///Create account by email and password
+  Future<UserCredential?> createByEmailAndPassword(
     String email,
     String password,
     VoidCallback completion,
   );
+
+  ///Update phone number to new one by session token
   Future<User?> updatePhoneNumber(PhoneAuthCredential phoneAuthCredential);
 }
 

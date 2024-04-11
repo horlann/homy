@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:homyyy/features/cdn/storage/firebase_storage.dart';
 
+///CDN which provides media content
+///from [FIREBASE] [STORAGE]
 abstract class CDNStorageRepository {
   Future<String> put(File file, String path);
 

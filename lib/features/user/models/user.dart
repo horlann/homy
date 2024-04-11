@@ -5,7 +5,9 @@ import 'package:shared/api/models/abstract_user.dart';
 part 'user.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class UserEntity extends AbstractUser {
+
+///Common user model which describes user state and
+///behaviour class UserEntity extends AbstractUser {
   bool verified;
   final bool isOnline;
   final String? fcmToken;

@@ -92,19 +92,19 @@ class ProfileScreen extends StatelessWidget {
                             width: 20,
                           ),
                           Expanded(
-                            child:  Material(
-                              color: Colors.green.withOpacity(0.2) ,
-                              borderRadius: BorderRadius.all(Radius.circular(16
-                              )),
+                            child: Material(
+                              color: Colors.green.withOpacity(0.2),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
                               child: IconButton(
-                                hoverColor:Colors.amber.withOpacity(0.2) ,
-                                highlightColor:Colors.amber.withOpacity(0.2) ,
-                                
-                                
-                                                              focusColor:Colors.amber.withOpacity(0.2) ,
-                              
-                                icon: Icon(Icons.add),onPressed: (){},),
-                            ),),
+                                hoverColor: Colors.amber.withOpacity(0.2),
+                                highlightColor: Colors.amber.withOpacity(0.2),
+                                focusColor: Colors.amber.withOpacity(0.2),
+                                icon: Icon(Icons.add),
+                                onPressed: () {},
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(

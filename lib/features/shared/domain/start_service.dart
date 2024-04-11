@@ -10,7 +10,8 @@ class StartService {
 
   final UserRepository _couriersRepository;
   final PushNotificationsService _pushNotificationsService;
-
+  ///Serviv which updates users fcm token
+  ///and push him to the BE
   Future<void> init() async {
     final token = await _pushNotificationsService.token;
     if (token != null) {
