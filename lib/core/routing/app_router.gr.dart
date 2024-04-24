@@ -19,6 +19,7 @@ import 'package:homyyy/features/chat/chats_wrapper.dart' as _i4;
 import 'package:homyyy/features/chat/simple_chat/simple_chat.dart' as _i14;
 import 'package:homyyy/features/chat/ui/list_of_chats/chats_screen.dart' as _i3;
 import 'package:homyyy/features/home/ui/home_screen.dart' as _i6;
+import 'package:homyyy/features/osbb/data/models/osbb_model.dart' as _i19;
 import 'package:homyyy/features/osbb_details/admin_info_screen.dart' as _i1;
 import 'package:homyyy/features/osbb_details/neighbours_screen.dart' as _i8;
 import 'package:homyyy/features/osbb_details/osbb_details_screen.dart' as _i9;
@@ -34,9 +35,13 @@ abstract class $AppRouter extends _i17.RootStackRouter {
   @override
   final Map<String, _i17.PageFactory> pagesMap = {
     AdminInfoScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<AdminInfoScreenRouteArgs>();
       return _i17.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.AdminInfoScreen(),
+        child: _i1.AdminInfoScreen(
+          key: args.key,
+          osbbId: args.osbbId,
+        ),
       );
     },
     AuthUpScreenWrapper.name: (routeData) {
@@ -82,15 +87,23 @@ abstract class $AppRouter extends _i17.RootStackRouter {
       );
     },
     NeighboursScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<NeighboursScreenRouteArgs>();
       return _i17.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.NeighboursScreen(),
+        child: _i8.NeighboursScreen(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     OSBBInfoScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<OSBBInfoScreenRouteArgs>();
       return _i17.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.OSBBInfoScreen(),
+        child: _i9.OSBBInfoScreen(
+          key: args.key,
+          osbbModel: args.osbbModel,
+        ),
       );
     },
     PhoneInputScreenRoute.name: (routeData) {
@@ -153,16 +166,41 @@ abstract class $AppRouter extends _i17.RootStackRouter {
 
 /// generated route for
 /// [_i1.AdminInfoScreen]
-class AdminInfoScreenRoute extends _i17.PageRouteInfo<void> {
-  const AdminInfoScreenRoute({List<_i17.PageRouteInfo>? children})
-      : super(
+class AdminInfoScreenRoute
+    extends _i17.PageRouteInfo<AdminInfoScreenRouteArgs> {
+  AdminInfoScreenRoute({
+    _i18.Key? key,
+    required String osbbId,
+    List<_i17.PageRouteInfo>? children,
+  }) : super(
           AdminInfoScreenRoute.name,
+          args: AdminInfoScreenRouteArgs(
+            key: key,
+            osbbId: osbbId,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AdminInfoScreenRoute';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i17.PageInfo<AdminInfoScreenRouteArgs> page =
+      _i17.PageInfo<AdminInfoScreenRouteArgs>(name);
+}
+
+class AdminInfoScreenRouteArgs {
+  const AdminInfoScreenRouteArgs({
+    this.key,
+    required this.osbbId,
+  });
+
+  final _i18.Key? key;
+
+  final String osbbId;
+
+  @override
+  String toString() {
+    return 'AdminInfoScreenRouteArgs{key: $key, osbbId: $osbbId}';
+  }
 }
 
 /// generated route for
@@ -265,30 +303,79 @@ class MainScreenRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.NeighboursScreen]
-class NeighboursScreenRoute extends _i17.PageRouteInfo<void> {
-  const NeighboursScreenRoute({List<_i17.PageRouteInfo>? children})
-      : super(
+class NeighboursScreenRoute
+    extends _i17.PageRouteInfo<NeighboursScreenRouteArgs> {
+  NeighboursScreenRoute({
+    _i18.Key? key,
+    required String id,
+    List<_i17.PageRouteInfo>? children,
+  }) : super(
           NeighboursScreenRoute.name,
+          args: NeighboursScreenRouteArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'NeighboursScreenRoute';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i17.PageInfo<NeighboursScreenRouteArgs> page =
+      _i17.PageInfo<NeighboursScreenRouteArgs>(name);
+}
+
+class NeighboursScreenRouteArgs {
+  const NeighboursScreenRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i18.Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'NeighboursScreenRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
 /// [_i9.OSBBInfoScreen]
-class OSBBInfoScreenRoute extends _i17.PageRouteInfo<void> {
-  const OSBBInfoScreenRoute({List<_i17.PageRouteInfo>? children})
-      : super(
+class OSBBInfoScreenRoute extends _i17.PageRouteInfo<OSBBInfoScreenRouteArgs> {
+  OSBBInfoScreenRoute({
+    _i18.Key? key,
+    required _i19.OSBBModel osbbModel,
+    List<_i17.PageRouteInfo>? children,
+  }) : super(
           OSBBInfoScreenRoute.name,
+          args: OSBBInfoScreenRouteArgs(
+            key: key,
+            osbbModel: osbbModel,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'OSBBInfoScreenRoute';
 
-  static const _i17.PageInfo<void> page = _i17.PageInfo<void>(name);
+  static const _i17.PageInfo<OSBBInfoScreenRouteArgs> page =
+      _i17.PageInfo<OSBBInfoScreenRouteArgs>(name);
+}
+
+class OSBBInfoScreenRouteArgs {
+  const OSBBInfoScreenRouteArgs({
+    this.key,
+    required this.osbbModel,
+  });
+
+  final _i18.Key? key;
+
+  final _i19.OSBBModel osbbModel;
+
+  @override
+  String toString() {
+    return 'OSBBInfoScreenRouteArgs{key: $key, osbbModel: $osbbModel}';
+  }
 }
 
 /// generated route for

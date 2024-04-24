@@ -4,17 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:homyyy/features/user/user_repository.dart';
 
 import '../../../../main/di.dart';
+
 @RoutePage()
 class NeighboursScreen extends StatelessWidget {
-  const NeighboursScreen({super.key});
+  final String id;
+
+  const NeighboursScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Сусіди')),
       body: FutureBuilder(
-          future:
-              di.get<UserRepository>().getUsersByOsbb('7NbuVsOKuRSaGLjF8Enj'),
+          future: di.get<UserRepository>().getUsersByOsbb(id),
           builder: (context, snapshot) {
             return Padding(
               padding: const EdgeInsets.all(12.0),
@@ -34,7 +36,11 @@ class NeighboursScreen extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 32, width: 32, child: CircleAvatar()),
+                        SizedBox(
+                            height: 32,
+                            width: 32,
+                            child: Image.network(
+                                snapshot.data?[index].imagePath ?? '')),
                         SizedBox(
                           width: 8,
                         ),

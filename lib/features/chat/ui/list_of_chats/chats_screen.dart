@@ -17,23 +17,24 @@ class ChatsScreen extends StatefulWidget {
   @override
   State<ChatsScreen> createState() => _ChatsScreenState();
 }
-RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
 
-  void _onRefresh() async{
-    // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use refreshFailed()
-    _refreshController.refreshCompleted();
-  }
+RefreshController _refreshController = RefreshController(initialRefresh: false);
 
-  void _onLoading() async{
-    // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
-  
-    _refreshController.loadComplete();
-  }
+void _onRefresh() async {
+  // monitor network fetch
+  await Future.delayed(Duration(milliseconds: 1000));
+  // if failed,use refreshFailed()
+  _refreshController.refreshCompleted();
+}
+
+void _onLoading() async {
+  // monitor network fetch
+  await Future.delayed(Duration(milliseconds: 1000));
+  // if failed,use loadFailed(),if no data return,use LoadNodata()
+
+  _refreshController.loadComplete();
+}
+
 class _ChatsScreenState extends State<ChatsScreen> {
   @override
   Widget build(BuildContext context) {
@@ -58,10 +59,15 @@ class _ChatsScreenState extends State<ChatsScreen> {
                       orElse: () => Center(
                             child: Text('Error'),
                           ),
+                      loading: (_) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
                       idle: (idleState) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: SmartRefresher(
-                              onRefresh: (){
+                              onRefresh: () {
                                 _onRefresh.call();
                                 context.read<UserChatsCubit>().init();
                               },
@@ -92,6 +98,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
 
 class _ChatCard extends StatelessWidget {
   final ChatEntity info;
+
   const _ChatCard({super.key, required this.info});
 
   @override
@@ -111,7 +118,18 @@ class _ChatCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(),
+                      SizedBox(
+                        width: 40,
+                        height: 40,
+                        child: ClipOval(
+                          child: Image.network(
+                            info.recipient.imagePath ?? '',
+                            errorBuilder: (_, __, ___) {
+                              return CircleAvatar();
+                            },
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         width: 12,
                       ),
@@ -122,16 +140,19 @@ class _ChatCard extends StatelessWidget {
                           SizedBox(
                             height: 4,
                           ),
-                          Text(((info.messages.firstOrNull)?.text??"_____").toString()),
+                          Text(((info.messages.lastOrNull)?.text ?? "_____")
+                              .toString()),
                         ],
                       ),
                     ],
                   ),
-                  Positioned(
-                    child: Text(DateFormat('hh:mm').format(info.messages.first.createdAt)),
-                    bottom: 0,
-                    right: 0,
-                  )
+                  if (info.messages.isNotEmpty)
+                    Positioned(
+                      child: Text(DateFormat('hh:mm')
+                          .format(info.messages.last.createdAt)),
+                      bottom: 0,
+                      right: 0,
+                    )
                 ],
               ),
             ),

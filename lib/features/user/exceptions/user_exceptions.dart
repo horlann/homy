@@ -1,3 +1,3 @@
-class BaseCourierException implements Exception {}
+class BaseUserException implements Exception {}
 
-class NoCourierException extends BaseCourierException {}
+class NoUserException extends BaseUserException {}

@@ -10,6 +10,7 @@ AbstractUser _$AbstractUserFromJson(Map<String, dynamic> json) => AbstractUser(
       id: json['id'] as String,
       name: json['name'] as String?,
       phone: json['phone'] as String?,
+      userType: UserType.user,
     );
 
 Map<String, dynamic> _$AbstractUserToJson(AbstractUser instance) =>
@@ -18,3 +19,7 @@ Map<String, dynamic> _$AbstractUserToJson(AbstractUser instance) =>
       'name': instance.name,
       'phone': instance.phone,
     };
+const _$UserTypeEnumMap = {
+  UserType.user: 'user',
+  UserType.admin: 'admin',
+};

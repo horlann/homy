@@ -5,7 +5,7 @@ import 'package:homyyy/features/auth/cubits/code_verification/code_verification_
 import 'package:homyyy/features/auth/cubits/phone_input/phone_input_cubit.dart';
 import 'package:homyyy/features/auth/cubits/sign_in_by_email/sign_in_email_cubit.dart';
 import 'package:homyyy/features/auth/cubits/sign_up/sign_up_cubit.dart';
-import 'package:homyyy/features/auth/data/repositories/user_repository.dart';
+import 'package:homyyy/features/auth/data/repositories/user_auth_repository.dart';
 import 'package:homyyy/features/auth/ui/sign_in_by_email.dart';
 import 'package:homyyy/features/cdn/cdn_repository.dart';
 import 'package:homyyy/features/cdn/storage/firebase_storage.dart';

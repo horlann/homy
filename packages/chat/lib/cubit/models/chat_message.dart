@@ -1,6 +1,7 @@
 import 'package:chat/data/chat_message_dto.dart';
 import 'package:chat/data/message_sender.dart';
 import 'package:shared/api/models/abstract_user.dart';
+import 'package:shared/api/user_types.dart';
 
 final class ChatMessage {
   final AbstractUser sender;
@@ -22,7 +23,7 @@ final class ChatMessage {
 
   factory ChatMessage.fromDTO(ChatMessageDTO dto) {
     return ChatMessage(
-        sender: AbstractUser(id: dto.sender.id),
+        sender: AbstractUser(id: dto.sender.id, userType: UserType.user),
         id: dto.id,
         text: dto.text,
         createdAt: dto.createdAt,

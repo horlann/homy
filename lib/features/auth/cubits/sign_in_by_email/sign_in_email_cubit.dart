@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:homyyy/features/auth/data/exceptions/auth_exceptions.dart';
-import 'package:homyyy/features/auth/data/repositories/user_repository.dart';
+import 'package:homyyy/features/auth/data/repositories/user_auth_repository.dart';
 import 'package:shared/base_cubit/base_cubit.dart';
 import 'package:shared/enums/app_type.dart';
 import 'package:shared/logger/custom_log.dart';

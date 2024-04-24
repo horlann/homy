@@ -3,7 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homyyy/core/routing/app_router.gr.dart';
 import 'package:homyyy/features/auth/cubits/auth/auth_cubit.dart';
-import 'package:homyyy/features/auth/data/repositories/user_repository.dart';
+import 'package:homyyy/features/auth/data/repositories/user_auth_repository.dart';
 import 'package:homyyy/features/home/ui/widgets/home_sections_widget.dart';
 import 'package:homyyy/features/home/ui/widgets/home_title_widget.dart';
 import 'package:homyyy/features/osbb/cubit/osbb_cubit.dart';
@@ -28,6 +28,7 @@ class ProfileScreen extends StatelessWidget {
                     child: Column(children: [
                       CircleAvatar(
                         radius: 64,
+                        child: Image.network(user.user?.imagePath ?? ''),
                       ),
                       SizedBox(
                         height: 16,

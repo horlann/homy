@@ -16,7 +16,8 @@ class OsbbCubit extends BaseCubit<OsbbState> {
   Future<void> init(String input) async {
     try {
       emit(OsbbState.loading());
-      final osbb = await _osbbRepository.getOSBB('1');
+      //todo:
+      final osbb = await _osbbRepository.getOSBB('7NbuVsOKuRSaGLjF8Enj');
       emit(OsbbState.idle(osbb: osbb));
     } catch (e, s) {
       print(e);

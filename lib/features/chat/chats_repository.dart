@@ -1,16 +1,11 @@
-import 'dart:ui';
-
 import 'package:chat/data/chat_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:homyyy/features/auth/data/exceptions/auth_exceptions.dart';
 import 'package:homyyy/features/chat/ui/list_of_chats/cubit/chats_cubit.dart';
-import 'package:homyyy/features/osbb/data/models/osbb_model.dart';
 import 'package:homyyy/features/user/user_repository.dart';
 import 'package:homyyy/main/di.dart';
-import 'package:shared/api/firebase_auth_api.dart';
 
 abstract class ChatsRepository {
+  ///fetch user chats  by userId
   Future<List<ChatEntity>> userChats(
     String id,
   );

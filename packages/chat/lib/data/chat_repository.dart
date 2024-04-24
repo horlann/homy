@@ -66,7 +66,7 @@ class ChatRepositoryImpl extends ChatRepository {
             );
           }
         }
-        throw NoDataInDatabaseError(message: 'No snapshot by request $id');
+        return [];
       },
     );
   }

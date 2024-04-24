@@ -16,7 +16,7 @@ class SplashPageCubit extends Cubit<SplashPageState> {
         await Future<void>.delayed(const Duration(milliseconds: 500))
             .then((value) => emit(const SplashPageState.enter()));
       } else {
-        emit(const SplashPageState.interrupt())
+        emit(const SplashPageState.interrupt());
       }
     } catch (e) {
       emit(const SplashPageState.interrupt());

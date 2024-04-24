@@ -6,11 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared/api/firebase_auth_api.dart';
 import 'package:shared/api/models/abstract_user.dart';
+import 'package:shared/api/user_types.dart';
 import 'package:shared/exceptions/exceptions.dart';
 import 'package:shared/logger/logger_service.dart';
 import 'package:uuid/uuid.dart';
 
 part 'chat_cubit.freezed.dart';
+
 part 'chat_state.dart';
 
 class ChatCubit extends Cubit<PersonalChatState> {
@@ -56,13 +58,13 @@ class ChatCubit extends Cubit<PersonalChatState> {
     final ChatMessage msg = ChatMessage(
         id: const Uuid().v4(),
         text: text,
-        messageType:'text',
+        messageType: 'text',
         createdAt: DateTime.now(),
         status: 'delivered',
-        sender: AbstractUser(id: _userId!));
-   messages.insert(0, msg);
+        sender: AbstractUser(id: _userId!, userType: UserType.user));
+    messages.insert(0, msg);
 
-   await _chatRepository.pushMessage(idleState.deliveryId, msg);
+    await _chatRepository.pushMessage(idleState.deliveryId, msg);
   }
 
   Future<void> seeMessage(String messageId) async {
